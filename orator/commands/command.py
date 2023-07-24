@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import os
-from cleo import Command as BaseCommand, InputOption, ListInput
+from cleo.commands.command import Command as BaseCommand
+from cleo.io.inputs.option import Option
+from cleo.io.io import IO
+from cleo.formatters.style import Style
 from orator import DatabaseManager
 import yaml
 
@@ -23,15 +26,24 @@ class Command(BaseCommand):
         if self.needs_config and not self.resolver:
             # Checking if a default config file is present
             if not self._check_config():
-                self.add_option(
-                    "config", "c", InputOption.VALUE_REQUIRED, "The config file path"
+                self._definition.add_option(
+                    Option(
+                        name="config",
+                        shortcut="c",
+                        requires_value=True,
+                        description="The config file path",
+                        flag=False,
+                    )
                 )
 
-    def execute(self, i, o):
+    def execute(self, io: IO):
         """
         Executes the command.
         """
-        self.set_style("question", fg="blue")
+        self._io = io
+        self._io.output.formatter.set_style(
+            "question", style=Style(foreground="blue")
+        )
 
         if self.needs_config and not self.resolver:
             self._handle_config(self.option("config"))

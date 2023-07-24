@@ -1,10 +1,6 @@
 Orator
 ######
 
-.. image:: https://travis-ci.org/sdispater/orator.png
-   :alt: Orator Build status
-   :target: https://travis-ci.org/sdispater/orator
-
 The Orator ORM provides a simple yet beautiful ActiveRecord implementation.
 
 It is inspired by the database part of the `Laravel framework <http://laravel.com>`_,
@@ -22,9 +18,8 @@ You can install Orator in 2 different ways:
 
 .. code-block:: bash
 
-    pip install orator
+    pip install git+https://github.com/Oper18/orator
 
-* Install from source using the official repository (https://github.com/sdispater/orator)
 
 The different dbapi packages are not part of the package dependencies,
 so you must install them in order to connect to corresponding databases:

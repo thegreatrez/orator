@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from cleo.helpers import option
 from orator.migrations import Migrator, DatabaseMigrationRepository
 from .base_command import BaseCommand
 
@@ -14,6 +15,34 @@ class ResetCommand(BaseCommand):
         {--P|pretend : Dump the SQL queries that would be run.}
         {--f|force : Force the operation to run.}
     """
+
+    name = "migrate:reset"
+    options = [
+        option(
+            long_name="database",
+            short_name="d",
+            description="The database connection to use.",
+            flag=False,
+        ),
+        option(
+            long_name="path",
+            short_name="p",
+            description="The path of migrations files to be executed.",
+            flag=False,
+        ),
+        option(
+            long_name="pretend",
+            short_name="P",
+            description="The database connection to use.",
+            flag=True,
+        ),
+        option(
+            long_name="force",
+            short_name="f",
+            description="Force the operation to run.",
+            flag=True,
+        ),
+    ]
 
     def handle(self):
         """

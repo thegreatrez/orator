@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from cleo.helpers import argument, option
 from orator.migrations import MigrationCreator
 from .base_command import BaseCommand
 
@@ -17,6 +18,33 @@ class MigrateMakeCommand(BaseCommand):
     """
 
     needs_config = False
+    name = "make:migration"
+    arguments = [
+        argument(
+            name="name",
+            description="The name of the migration.",
+        )
+    ]
+    options = [
+        option(
+            long_name="table",
+            short_name="t",
+            description="The table to create the migration for.",
+            flag=False,
+        ),
+        option(
+            long_name="create",
+            short_name="C",
+            description="Whether the migration will create the table or not.",
+            flag=True,
+        ),
+        option(
+            long_name="path",
+            short_name="p",
+            description="The path to migrations files.",
+            flag=False,
+        ),
+    ]
 
     def handle(self):
         """

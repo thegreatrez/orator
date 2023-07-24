@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from cleo.helpers import option
 from orator.migrations import Migrator, DatabaseMigrationRepository
 from .base_command import BaseCommand
 
@@ -12,6 +13,22 @@ class StatusCommand(BaseCommand):
         {--d|database= : The database connection to use.}
         {--p|path= : The path of migrations files to be executed.}
     """
+
+    name = "migrate:status"
+    options = [
+        option(
+            long_name="database",
+            short_name="d",
+            description="The database connection to use.",
+            flag=False,
+        ),
+        option(
+            long_name="path",
+            short_name="p",
+            description="The path of migrations files to be executed.",
+            flag=False,
+        ),
+    ]
 
     def handle(self):
         """

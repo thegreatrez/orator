@@ -2,7 +2,8 @@
 
 import os
 import inflection
-from cleo import Command
+from cleo.commands.command import Command
+from cleo.helpers import argument, option
 from .stubs import MODEL_DEFAULT_STUB
 from ...utils import mkdir_p
 
@@ -16,6 +17,28 @@ class ModelMakeCommand(Command):
         {--m|migration : Create a new migration file for the model.}
         {--p|path= : Path to models directory}
     """
+
+    name = "make:model"
+    arguments = [
+        argument(
+            name="name",
+            description="The name of the migration.",
+        )
+    ]
+    options = [
+        option(
+            long_name="migration",
+            short_name="m",
+            description="Create a new migration file for the model.",
+            flag=False,
+        ),
+        option(
+            long_name="path",
+            short_name="p",
+            description="The path to migrations files.",
+            flag=False,
+        ),
+    ]
 
     def handle(self):
         name = self.argument("name")

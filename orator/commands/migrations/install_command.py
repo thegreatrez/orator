@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from cleo.helpers import option
 from orator.migrations import DatabaseMigrationRepository
 from .base_command import BaseCommand
 
@@ -11,6 +12,16 @@ class InstallCommand(BaseCommand):
     migrate:install
         {--d|database= : The database connection to use.}
     """
+
+    name = "migrate:install"
+    options = [
+        option(
+            long_name="database",
+            short_name="d",
+            description="The database connection to use.",
+            flag=False,
+        ),
+    ]
 
     def handle(self):
         """

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from cleo.helpers import option
 from .base_command import BaseCommand
 
 
@@ -16,6 +17,45 @@ class RefreshCommand(BaseCommand):
         {--seeder=database_seeder : The name of the root seeder.}
         {--f|force : Force the operation to run.}
     """
+
+    name = "migrate:refresh"
+    options = [
+        option(
+            long_name="database",
+            short_name="d",
+            description="The database connection to use.",
+            flag=False,
+        ),
+        option(
+            long_name="path",
+            short_name="p",
+            description="The path of migrations files to be executed.",
+            flag=False,
+        ),
+        option(
+            long_name="seed",
+            short_name="s",
+            description="The database connection to use.",
+            flag=True,
+        ),
+        option(
+            long_name="seed-path",
+            description="The database connection to use.",
+            flag=False,
+        ),
+        option(
+            long_name="seeder",
+            description="The name of the root seeder.",
+            flag=False,
+            default="database_seeder",
+        ),
+        option(
+            long_name="force",
+            short_name="f",
+            description="Force the operation to run.",
+            flag=True,
+        ),
+    ]
 
     def handle(self):
         """

@@ -3,6 +3,7 @@
 import os
 import errno
 import inflection
+from cleo.helpers import argument, option
 from ...seeds.stubs import DEFAULT_STUB
 from .base_command import BaseCommand
 
@@ -18,6 +19,21 @@ class SeedersMakeCommand(BaseCommand):
     """
 
     needs_config = False
+    name = "make:seed"
+    arguments = [
+        argument(
+            name="name",
+            description="The name of the migration.",
+        )
+    ]
+    options = [
+        option(
+            long_name="path",
+            short_name="p",
+            description="The path to seeders files. Defaults to <comment>./seeds</comment>.",
+            flag=False,
+        ),
+    ]
 
     def handle(self):
         """

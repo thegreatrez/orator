@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from cleo.helpers import option
+
 from orator.migrations import Migrator, DatabaseMigrationRepository
 from .base_command import BaseCommand
 
@@ -17,6 +19,46 @@ class MigrateCommand(BaseCommand):
         {--P|pretend : Dump the SQL queries that would be run.}
         {--f|force : Force the operation to run.}
     """
+
+    name = "migrate"
+    description = "Run the database migrations."
+    options = [
+        option(
+            long_name="database",
+            short_name="d",
+            description="The database connection to use.",
+            flag=False,
+        ),
+        option(
+            long_name="path",
+            short_name="p",
+            description="The path of migrations files to be executed.",
+            flag=False,
+        ),
+        option(
+            long_name="seed",
+            short_name="s",
+            description="The database connection to use.",
+            flag=True,
+        ),
+        option(
+            long_name="seed-path",
+            description="The database connection to use.",
+            flag=False,
+        ),
+        option(
+            long_name="pretend",
+            short_name="P",
+            description="The database connection to use.",
+            flag=True,
+        ),
+        option(
+            long_name="force",
+            short_name="f",
+            description="Force the operation to run.",
+            flag=True,
+        ),
+    ]
 
     def handle(self):
         if not self.confirm_to_proceed(

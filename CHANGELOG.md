@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.10] - 2023-07-20
+
+### Fixed
+
+- Update dependecies to last versions
+
 ## [0.9.9] - 2019-07-15
 
 ### Fixed

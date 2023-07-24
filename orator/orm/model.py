@@ -1869,7 +1869,7 @@ class Model(object):
         """
         Get a fresh timestamp for the model.
 
-        :return: pendulum.Pendulum
+        :return: pendulum.DateTime
         """
         return pendulum.utcnow()
 
@@ -2590,13 +2590,13 @@ class Model(object):
         Convert datetime to a storable string.
         
         :param value: The datetime value
-        :type value: pendulum.Pendulum or datetime.date or datetime.datetime
+        :type value: pendulum.DateTime or datetime.date or datetime.datetime
 
         :rtype: str
         """
         date_format = self.get_connection().get_query_grammar().get_date_format()
 
-        if isinstance(value, pendulum.Pendulum):
+        if isinstance(value, pendulum.DateTime):
             return value.format(date_format)
 
         if isinstance(value, datetime.date) and not isinstance(
@@ -2612,7 +2612,7 @@ class Model(object):
         """
         Return a timestamp as a datetime.
 
-        :rtype: pendulum.Pendulum or pendulum.Date
+        :rtype: pendulum.DateTime or pendulum.Date
         """
         if isinstance(value, basestring):
             return pendulum.parse(value)
@@ -2640,7 +2640,7 @@ class Model(object):
         Format a date or timestamp.
 
         :param date: The date or timestamp
-        :type date: datetime.datetime or datetime.date or pendulum.Pendulum
+        :type date: datetime.datetime or datetime.date or pendulum.DateTime
 
         :rtype: str
         """

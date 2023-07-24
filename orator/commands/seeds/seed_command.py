@@ -3,7 +3,7 @@
 import importlib
 import inflection
 import os
-from cleo import InputOption
+from cleo.helpers import option
 from orator import DatabaseManager
 from .base_command import BaseCommand
 from ...utils import load_module
@@ -20,6 +20,34 @@ class SeedCommand(BaseCommand):
         {--seeder=database_seeder : The name of the root seeder.}
         {--f|force : Force the operation to run.}
     """
+
+    name = "db:seed"
+    options = [
+        option(
+            long_name="database",
+            short_name="d",
+            description="The database connection to use.",
+            flag=False,
+        ),
+        option(
+            long_name="path",
+            short_name="p",
+            description="The path of migrations files to be executed.",
+            flag=False,
+        ),
+        option(
+            long_name="seeder",
+            description="The name of the root seeder.",
+            flag=False,
+            default="database_seeder",
+        ),
+        option(
+            long_name="force",
+            short_name="f",
+            description="Force the operation to run.",
+            flag=True,
+        ),
+    ]
 
     def handle(self):
         """
