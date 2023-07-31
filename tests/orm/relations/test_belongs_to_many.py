@@ -2,7 +2,7 @@
 
 
 import pendulum
-from flexmock import flexmock, flexmock_teardown
+from flexmock import flexmock
 from ... import OratorTestCase
 from ...utils import MockConnection
 
@@ -18,9 +18,6 @@ from orator.orm.collection import Collection
 
 
 class OrmBelongsToTestCase(OratorTestCase):
-    def tearDown(self):
-        flexmock_teardown()
-
     def test_models_are_properly_hydrated(self):
         model1 = OrmBelongsToManyModelStub()
         model1.fill(name="john", pivot_user_id=1, pivot_role_id=2)

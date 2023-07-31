@@ -2,7 +2,7 @@
 
 
 import pendulum
-from flexmock import flexmock, flexmock_teardown
+from flexmock import flexmock
 from ... import OratorTestCase
 from ...utils import MockConnection
 
@@ -18,9 +18,6 @@ from orator.orm.collection import Collection
 
 
 class OrmMorphToManyTestCase(OratorTestCase):
-    def tearDown(self):
-        flexmock_teardown()
-
     def test_eager_constraints_are_properly_added(self):
         relation = self._get_relation()
         relation.get_query().get_query().should_receive("where_in").once().with_args(

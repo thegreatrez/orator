@@ -1871,7 +1871,7 @@ class Model(object):
 
         :return: pendulum.DateTime
         """
-        return pendulum.utcnow()
+        return pendulum.now(tz=pendulum.pendulum.tz.UTC)
 
     def fresh_timestamp_string(self):
         """
@@ -2983,7 +2983,8 @@ class Model(object):
         try:
             super(Model, self).__delattr__(item)
         except AttributeError:
-            del self._attributes[item]
+            if item in self._attributes:
+                del self._attributes[item]
 
     def __getstate__(self):
         return {

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from flexmock import flexmock_teardown
-from cleo import Application, CommandTester
+from cleo.application import Application
+try:
+    from cleo.testers import CommandTester
+except Exception:
+    CommandTester = type("CommandTester", (object,), {})
 from .. import OratorTestCase
 
 
 class OratorCommandTestCase(OratorTestCase):
-    def tearDown(self):
-        flexmock_teardown()
-
     def run_command(self, command, options=None):
         """
         Run the command.

@@ -271,7 +271,7 @@ class IntegrationTestCase(object):
         self.assertEqual("First Post", photos[3].imageable.name)
 
     def test_multi_insert_with_different_values(self):
-        date = pendulum.utcnow()._datetime
+        date = pendulum.now(tz=pendulum.tz.UTC)
         user1 = OratorTestUser.create(email="john@doe.com")
         user2 = OratorTestUser.create(email="jane@doe.com")
         result = OratorTestPost.insert(
@@ -295,7 +295,7 @@ class IntegrationTestCase(object):
         self.assertEqual(2, OratorTestPost.count())
 
     def test_multi_insert_with_same_values(self):
-        date = pendulum.utcnow()._datetime
+        date = pendulum.now(tz=pendulum.tz.UTC)
         user1 = OratorTestUser.create(email="john@doe.com")
         result = OratorTestPost.insert(
             [
@@ -623,7 +623,7 @@ class IntegrationTestCase(object):
         self.assertEqual(count, 20)
 
     def test_timestamp_with_timezone(self):
-        now = pendulum.utcnow()
+        now = pendulum.now(tz=pendulum.tz.UTC)
         user = OratorTestUser.create(email="john@doe.com", created_at=now)
         fresh_user = OratorTestUser.find(user.id)
 
@@ -761,7 +761,7 @@ class OratorTestUser(Model):
 
     @scope
     def older_than(self, query, **kwargs):
-        query.where("updated_at", "<", pendulum.utcnow().subtract(**kwargs))
+        query.where("updated_at", "<", pendulum.now(tz=pendulum.tz.UTC).subtract(**kwargs))
 
 
 class OratorTestPost(Model):

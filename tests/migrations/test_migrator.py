@@ -3,7 +3,7 @@
 import os
 import glob
 import inspect
-from flexmock import flexmock, flexmock_teardown
+from flexmock import flexmock
 from .. import OratorTestCase
 from orator.migrations import Migrator, DatabaseMigrationRepository, Migration
 from orator import DatabaseManager
@@ -16,9 +16,6 @@ class MigratorTestCase(OratorTestCase):
         if PY3K:
             self.orig = inspect.getargspec
             inspect.getargspec = lambda fn: inspect.getfullargspec(fn)[:4]
-
-    def tearDown(self):
-        flexmock_teardown()
 
         if PY3K:
             inspect.getargspec = self.orig

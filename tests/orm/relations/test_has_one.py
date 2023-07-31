@@ -2,7 +2,7 @@
 
 
 import pendulum
-from flexmock import flexmock, flexmock_teardown
+from flexmock import flexmock
 from ... import OratorTestCase
 
 from orator.query.builder import QueryBuilder
@@ -15,9 +15,6 @@ from orator.orm.collection import Collection
 
 
 class OrmHasOneTestCase(OratorTestCase):
-    def tearDown(self):
-        flexmock_teardown()
-
     def test_save_method_set_foreign_key_on_model(self):
         relation = self._get_relation()
         mock_model = flexmock(Model(), save=lambda: True)

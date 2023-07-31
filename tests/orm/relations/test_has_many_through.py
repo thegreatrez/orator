@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pendulum
-from flexmock import flexmock, flexmock_teardown
+from flexmock import flexmock
 from ... import OratorTestCase
 from ...utils import MockConnection
 
@@ -16,9 +16,6 @@ from orator.orm.collection import Collection
 
 
 class OrmHasManyThroughTestCase(OratorTestCase):
-    def tearDown(self):
-        flexmock_teardown()
-
     def test_relation_is_properly_initialized(self):
         relation = self._get_relation()
         model = flexmock(Model())

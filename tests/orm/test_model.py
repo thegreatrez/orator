@@ -4,8 +4,8 @@ import simplejson as json
 import hashlib
 import time
 import datetime
-from pendulum import Pendulum
-from flexmock import flexmock, flexmock_teardown
+from pendulum import DateTime 
+from flexmock import flexmock
 from .. import OratorTestCase, mock
 from ..utils import MockModel, MockQueryBuilder, MockConnection, MockProcessor
 
@@ -24,9 +24,6 @@ from orator.events import Event
 
 
 class OrmModelTestCase(OratorTestCase):
-    def tearDown(self):
-        flexmock_teardown()
-
     def test_attributes_manipulation(self):
         model = OrmModelStub()
         model.name = "foo"

@@ -32,7 +32,10 @@ class accessor(object):
 
         self.expr = accessor_
         if accessor_ is not None:
-            update_wrapper(self, accessor_)
+            try:
+                update_wrapper(self, accessor_)
+            except Exception:
+                pass
 
     def __get__(self, instance, owner):
         if instance is None:
@@ -126,7 +129,10 @@ class scope(classmethod):
         self._method = method
         self._owner = None
 
-        update_wrapper(self, method)
+        try:
+            update_wrapper(self, method)
+        except Exception:
+            pass
 
     def __get__(self, instance, owner, *args, **kwargs):
         if instance:
@@ -169,7 +175,10 @@ class relation(object):
 
         self.expr = func
         if func is not None:
-            update_wrapper(self, func)
+            try:
+                update_wrapper(self, func)
+            except Exception:
+                pass
 
     def __get__(self, instance, owner):
         if instance is None:
