@@ -37,6 +37,18 @@ class Builder(object):
         """
         self._query = query
 
+    def new_orm_builder(self, query):
+        """
+        Create a new orm query builder for the model
+
+        :param query: A QueryBuilder instance
+        :type query: QueryBuilder
+
+        :return: A Builder instance
+        :rtype: Builder
+        """
+        return Builder(query)
+
         self._model = None
         self._eager_load = {}
         self._macros = {}
@@ -1059,6 +1071,15 @@ class Builder(object):
         :rtype: QueryBuilder
         """
         return self._query
+
+    def subquery(self, columns=None, aggregation=None):
+        if columns:
+            self._query.columns = columns
+        else:
+            self._query.columns = ["*"]
+        if aggregation:
+            self._query.aggregate_ = {"function": aggregation, "columns": self.columns}
+        return self.get_query()
 
     def to_base(self):
         """
