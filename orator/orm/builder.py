@@ -36,19 +36,6 @@ class Builder(object):
         :type query: QueryBuilder
         """
         self._query = query
-
-    def new_orm_builder(self, query):
-        """
-        Create a new orm query builder for the model
-
-        :param query: A QueryBuilder instance
-        :type query: QueryBuilder
-
-        :return: A Builder instance
-        :rtype: Builder
-        """
-        return Builder(query)
-
         self._model = None
         self._eager_load = {}
         self._macros = {}
