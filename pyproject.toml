@@ -20,7 +20,7 @@ keywords = ['database', 'orm']
 [tool.poetry.dependencies]
 python = "^3.9"
 backpack = "^0.1"
-blinker = "^1.6.2"
+
 cleo = "^2.0.1"
 inflection = "^0.5.1"
 Faker = "^19.1.0"
