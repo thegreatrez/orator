@@ -18,7 +18,7 @@ You can install Orator in 2 different ways:
 
 .. code-block:: bash
 
-    pip install git+https://github.com/Oper18/orator
+    pip install git+https://github.com/thegreatrez/orator
 
 
 The different dbapi packages are not part of the package dependencies,
